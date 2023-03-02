@@ -1,6 +1,7 @@
 from grblogtools.api import get_dataframe, parse
 from grblogtools.plotting import plot
 
+
 def get_version():
     def get_version_post_py38():
         from importlib.metadata import version  # type: ignore
