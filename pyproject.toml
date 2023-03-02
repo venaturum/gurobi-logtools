@@ -1,6 +1,77 @@
-[build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
+[tool.poetry]
+name = "grblogtools"
+version = "2.0.0"
+description = "Gurobi log file tools for parsing and exploring data"
+readme = "README.md"
+authors = ["Gurobi Optimization, LLC <support@gurobi.com>"]
+maintainers = ["Gurobi Optimization, LLC <support@gurobi.com>"]
+license = "Apache-2.0"
+repository = "https://github.com/Gurobi/grblogtools"
+homepage = "https://github.com/Gurobi/grblogtools"
+documentation = "https://github.com/Gurobi/grblogtools"
 
-[tool.isort]
-profile = "black"
+keywords=[
+	'Gurobi',
+	'Mathematics',
+	'Optimization', 
+	'Data Analysis',
+	'Data Structures',
+]
+
+classifiers=[
+    'License :: OSI Approved :: Apache Software License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+]
+
+
+[tool.poetry.dependencies]
+python = ">=3.7,<3.12"
+gurobipy = "^9"
+plotly = "^5.0"
+
+[[tool.poetry.dependencies.pandas]]
+python = ">=3.7,<3.10"
+version = "^1"
+
+[[tool.poetry.dependencies.pandas]]
+python = "^3.10"
+version = "^1.3.4"
+
+
+[[tool.poetry.dependencies.numpy]]
+python = ">=3.7,<3.10"
+version = "^1.15"
+
+[[tool.poetry.dependencies.numpy]]
+python = "^3.10"
+version = "^1.21.2"
+
+[[tool.poetry.dependencies.scipy]]
+python = ">=3.7,<3.10"
+version = "^1.6"
+
+[[tool.poetry.dependencies.scipy]]
+python = "^3.10"
+version = "^1.8"
+
+
+[tool.poetry.dev-dependencies]
+ipykernel = "^6"
+pytest = "^6"
+notebook = ">= 6.0"
+isort = ">=5.8"
+black = ">=22.10"
+flake8 = ">=4"
+pre-commit = ">=2.20"
+tox=">=3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
