@@ -118,3 +118,6 @@ cython_debug/
 
 # Produced by tox tests
 test.xlsx
+
+# MacOS
+.DS_STORE
