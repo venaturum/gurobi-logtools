@@ -53,13 +53,21 @@ class NodeLogParser:
     cut_report_start = re.compile(r"Cutting planes:")
     cut_report_line = re.compile(r"  (?P<Name>[\w\- ]+): (?P<Count>\d+)")
 
-    def __init__(self):
+    def __init__(self, continuation_parser):
         """Initialize the NodeLog parser."""
         self._summary = {}
         self._cuts = {}
         self._progress = []
         self._in_cut_report = False
         self._started = False
+        self._continuation_parser = continuation_parser
+
+    def match(self, regex, line):
+        match = regex.match(line)
+        if match:
+            if self._continuation_parser.has_buffer():
+                self._progress.extend(self._continuation_parser.take_progress())
+        return match
 
     def get_summary(self) -> dict:
         """Return the current parsed summary."""
@@ -78,19 +86,19 @@ class NodeLogParser:
         """
 
         for regex in self.tree_search_final_stats:
-            match = regex.match(line)
+            match = self.match(regex, line)
             if match:
                 entry = typeconvert_groupdict(match)
                 self._summary.update(entry)
                 return True
 
-        match = self.cut_report_start.match(line)
+        match = self.match(self.cut_report_start, line)
         if match:
             self._in_cut_report = True
             return True
 
         if self._in_cut_report:
-            match = self.cut_report_line.match(line)
+            match = self.match(self.cut_report_line, line)
             if match:
                 self._cuts[match.group("Name")] = convert_data_types(
                     match.group("Count")
@@ -99,15 +107,16 @@ class NodeLogParser:
 
         # Wait for the header before matching any log lines.
         if not self._started:
-            match = self.tree_search_start.match(line)
+            match = self.match(self.tree_search_start, line)
             if match:
                 self._started = True
                 return True
-            return False
+            if not self._continuation_parser.activated:
+                return False
 
         # Match log lines.
         for regex in self.line_types:
-            match = regex.match(line)
+            match = self.match(regex, line)
             if match:
                 self._progress.append(typeconvert_groupdict(match))
                 return True

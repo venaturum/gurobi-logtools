@@ -1,3 +1,4 @@
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.norel import NoRelParser
 from gurobi_logtools.parsers.util import parse_block
 
@@ -34,14 +35,14 @@ Elapsed time for NoRel heuristic: 5s
 
 def test_empty():
     """To check that timeline to summary conversion is sane."""
-    parser = NoRelParser()
+    parser = NoRelParser(ContinuationParser())
     assert parser.get_progress() == []
     assert parser.get_summary() == {}
 
 
 def test_norel_parser():
     """Pass all test lines in sequence and test summary/timeline."""
-    parser = NoRelParser()
+    parser = NoRelParser(ContinuationParser())
     parse_block(parser, norel_section_test_data)
     # only the 'Root simplex log...' line was passed but not parsed.
     assert parser.get_summary() == {
@@ -60,12 +61,12 @@ def test_norel_parser():
 
 
 def test_nobound():
-    parser = NoRelParser()
+    parser = NoRelParser(ContinuationParser())
     parse_block(parser, norel_section_test_data_nobound)
     assert parser.get_summary() == {"NoRelTime": 10.0, "NoRelBestSol": 1.450014e9}
 
 
 def test_nosol():
-    parser = NoRelParser()
+    parser = NoRelParser(ContinuationParser())
     parse_block(parser, norel_section_test_data_nosol)
     assert parser.get_summary() == {"NoRelTime": 5.0}

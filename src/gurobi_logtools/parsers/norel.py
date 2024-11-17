@@ -1,6 +1,6 @@
 import re
 
-from gurobi_logtools.parsers.util import typeconvert_groupdict
+from gurobi_logtools.parsers.util import float_pattern, typeconvert_groupdict
 
 
 class NoRelParser:
@@ -8,6 +8,13 @@ class NoRelParser:
     norel_primal_regex = re.compile(
         r"Found heuristic solution:\sobjective\s(?P<Incumbent>[^\s]+)"
     )
+    # the nodelog-ish line produced when running NoRel in a continued optimization:
+    norel_primal_continuation_regex = re.compile(
+        r"H\s*\d+\s+\d+\s+(?P<Incumbent>({0}|-))\s+(?P<BestBd>{0})\s+{0}%\s+(-|{0})\s+(?P<Time>\d+)s".format(
+            float_pattern
+        )
+    )
+
     # Order is important in this list as regexes are checked in order
     norel_elapsed = [
         re.compile(
@@ -16,10 +23,14 @@ class NoRelParser:
         re.compile(r"Elapsed time for NoRel heuristic:\s(?P<Time>\d+)s"),
     ]
 
-    def __init__(self):
+    norel_finished_regex = re.compile("NoRel heuristic complete")
+
+    def __init__(self, continuation_parser):
         self._progress = []
         self._incumbent = None
         self._started = False
+        self._finished = False
+        self._continuation_parser = continuation_parser
 
     def get_summary(self) -> dict:
         """Return the summary based on the timeline information.
@@ -45,6 +56,9 @@ class NoRelParser:
         Returns:
             bool: Return True if the given line is matched by some pattern.
         """
+        if self._finished:
+            return False
+
         if not self._started:
             match = self.norel_log_start.match(line)
             if match:
@@ -57,6 +71,12 @@ class NoRelParser:
             self._incumbent = float(match.group("Incumbent"))
             return True
 
+        match = self.norel_primal_continuation_regex.match(line)
+        if match and self._continuation_parser.activated:
+            entry = typeconvert_groupdict(match)
+            self._progress.append(entry)
+            return True
+
         for regex in self.norel_elapsed:
             match = regex.match(line)
             if match:
@@ -65,6 +85,14 @@ class NoRelParser:
                     entry["Incumbent"] = self._incumbent
                 self._progress.append(entry)
                 return True
+
+        match = self.norel_finished_regex.match(line)
+        if match:
+            self._finished = True
+            return True
+
+        # if self._started and not self._finished:
+        #     return True
 
         return False
 

@@ -1,5 +1,6 @@
 from unittest import TestCase, main
 
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.presolve import PresolveParser
 from gurobi_logtools.parsers.pretree_solutions import PreTreeSolutionParser
 from gurobi_logtools.parsers.util import parse_lines
@@ -140,7 +141,9 @@ class TestPresolve(TestCase):
 
         for i, example_log in enumerate([example_log_0, example_log_1, example_log_2]):
             with self.subTest(example_log=example_log):
-                presolve_parser = PresolveParser(PreTreeSolutionParser())
+                presolve_parser = PresolveParser(
+                    PreTreeSolutionParser(ContinuationParser())
+                )
                 for line in example_log.strip().split("\n"):
                     if presolve_parser.parse(line):
                         self.assertEqual(line, expected_start_lines[i])
@@ -156,7 +159,9 @@ class TestPresolve(TestCase):
         ]
         for i, example_log in enumerate([example_log_0, example_log_1, example_log_2]):
             with self.subTest(example_log=example_log):
-                presolve_parser = PresolveParser(PreTreeSolutionParser())
+                presolve_parser = PresolveParser(
+                    PreTreeSolutionParser(ContinuationParser())
+                )
                 lines = example_log.strip().split("\n")
                 parse_lines(presolve_parser, lines)
                 self.assertEqual(presolve_parser.get_summary(), expected_summaries[i])

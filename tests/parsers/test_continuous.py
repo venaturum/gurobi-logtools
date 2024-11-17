@@ -1,5 +1,6 @@
 from unittest import TestCase, main
 
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.continuous import ContinuousParser
 from gurobi_logtools.parsers.pretree_solutions import PreTreeSolutionParser
 from gurobi_logtools.parsers.util import parse_block
@@ -129,7 +130,9 @@ expected_progress_mip = [
 
 class TestContinuous(TestCase):
     def test_last_progress_entry_barrier_with_simplex(self):
-        continuous_parser = ContinuousParser(PreTreeSolutionParser())
+        continuous_parser = ContinuousParser(
+            PreTreeSolutionParser(ContinuationParser())
+        )
         parse_block(continuous_parser, example_log_barrier_with_simplex)
         self.assertEqual(
             continuous_parser.get_progress()[-1], expected_progress_last_entry
@@ -154,7 +157,9 @@ class TestContinuous(TestCase):
             ],
         ):
             with self.subTest(example_log=example_log):
-                continuous_parser = ContinuousParser(PreTreeSolutionParser())
+                continuous_parser = ContinuousParser(
+                    PreTreeSolutionParser(ContinuationParser())
+                )
                 parse_block(continuous_parser, example_log)
                 self.assertEqual(continuous_parser.get_summary(), expected_summary)
                 self.assertEqual(continuous_parser.get_progress(), expected_progress)

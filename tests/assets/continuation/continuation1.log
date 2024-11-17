@@ -1,0 +1,146 @@
+Gurobi 12.0.0 (mac64[x86]) logging started Sun Nov 17 15:33:03 2024
+
+Set parameter LogFile to value "continuation1.log"
+Set parameter NodeLimit to value 0
+Set parameter Cuts to value 0
+Set parameter Heuristics to value 0
+Set parameter DegenMoves to value 0
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (mac64[x86] - Darwin 23.6.0 23H124)
+
+CPU model: Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Non-default parameters:
+NodeLimit  0
+DegenMoves  0
+Heuristics  0
+Cuts  0
+
+Optimize a model with 80 rows, 390 columns and 1404 nonzeros
+Model fingerprint: 0x4329df29
+Model has 312 simple general constraints
+  312 INDICATOR
+Variable types: 26 continuous, 364 integer (364 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+01, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+03]
+  GenCon rhs range [8e+02, 8e+02]
+  GenCon coe range [1e+00, 1e+00]
+Presolve added 670 rows and 114 columns
+Presolve time: 0.03s
+Presolved: 750 rows, 504 columns, 6105 nonzeros
+Variable types: 140 continuous, 364 integer (364 binary)
+
+Root relaxation: objective 1.706305e+03, 46 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 1706.30490    0   31          - 1706.30490      -     -    0s
+
+Explored 1 nodes (46 simplex iterations) in 0.06 seconds (0.04 work units)
+Thread count was 8 (of 8 available processors)
+
+Solution count 0
+
+Node limit reached
+Best objective -, best bound 1.707000000000e+03, gap -
+Reset all parameters
+
+Gurobi 12.0.0 (mac64[x86]) logging started Sun Nov 17 15:33:03 2024
+
+Set parameter LogFile to value "continuation1.log"
+Set parameter TimeLimit to value 60
+Set parameter NoRelHeurTime to value 30
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (mac64[x86] - Darwin 23.6.0 23H124)
+
+CPU model: Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  60
+NoRelHeurTime  30
+
+Optimize a model with 80 rows, 390 columns and 1404 nonzeros
+Model fingerprint: 0x4329df29
+Model has 312 simple general constraints
+  312 INDICATOR
+Variable types: 26 continuous, 364 integer (364 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [4e+01, 1e+03]
+  Bounds range     [1e+00, 1e+00]
+  RHS range        [1e+00, 5e+03]
+  GenCon rhs range [8e+02, 8e+02]
+  GenCon coe range [1e+00, 1e+00]
+Presolved: 750 rows, 504 columns, 6105 nonzeros
+
+Continuing optimization...
+
+Starting NoRel heuristic
+Found phase-1 solution: relaxation 11250
+Found phase-1 solution: relaxation 1750
+Found phase-1 solution: relaxation 250
+Found phase-1 solution: relaxation 0
+H    0     0                    5221.0000000 1706.30490  67.3%     -    0s
+Transition to phase 2
+H    0     0                    5088.0000000 1706.30490  66.5%     -    0s
+H    0     0                    4563.0000000 1706.30490  62.6%     -    0s
+H    0     0                    4472.0000000 1706.30490  61.8%     -    0s
+H    0     0                    3962.0000000 1706.30490  56.9%     -    0s
+H    0     0                    3855.0000000 1706.30490  55.7%     -    0s
+H    0     0                    3835.0000000 1706.30490  55.5%     -    0s
+H    0     0                    3728.0000000 1706.30490  54.2%     -    0s
+H    0     0                    3514.0000000 1706.30490  51.4%     -    0s
+H    0     0                    3504.0000000 1706.30490  51.3%     -    0s
+H    0     0                    2849.0000000 1706.30490  40.1%     -    0s
+H    0     0                    2681.0000000 1706.30490  36.4%     -    0s
+H    0     0                    2634.0000000 1706.30490  35.2%     -    0s
+H    0     0                    2623.0000000 1706.30490  34.9%     -    0s
+H    0     0                    2612.0000000 1706.30490  34.7%     -    1s
+H    0     0                    2610.0000000 1706.30490  34.6%     -    1s
+H    0     0                    2607.0000000 1706.30490  34.5%     -    1s
+H    0     0                    2558.0000000 1706.30490  33.3%     -    1s
+H    0     0                    2539.0000000 1706.30490  32.8%     -    1s
+H    0     0                    2526.0000000 1706.30490  32.5%     -    2s
+Elapsed time for NoRel heuristic: 5s (best bound 1706.3)
+H    0     0                    2461.0000000 1706.30490  30.7%     -    8s
+H    0     0                    2460.0000000 1706.30490  30.6%     -    9s
+Elapsed time for NoRel heuristic: 12s (best bound 1706.3)
+Elapsed time for NoRel heuristic: 18s (best bound 1706.3)
+Elapsed time for NoRel heuristic: 24s (best bound 1706.3)
+Elapsed time for NoRel heuristic: 30s (best bound 1706.3)
+NoRel heuristic complete
+     0     0 1706.30490    0   21 2460.00000 1706.30490  30.6%     -   30s
+     0     0 1706.73950    0   21 2460.00000 1706.73950  30.6%     -   30s
+     0     2 1707.85714    0   21 2460.00000 1707.85714  30.6%     -   30s
+     1     4 1725.55556    1   22 2460.00000 1717.62687  30.2%  32.0   30s
+  8978  2877 2260.90860   32   16 2460.00000 2170.83696  11.8%  11.7   35s
+ 30431  8638 2281.41304   38   21 2460.00000 2246.26087  8.69%  11.5   44s
+ 30643  8759 2273.48491   42   25 2460.00000 2246.26087  8.69%  11.5   45s
+ 48727  9007 2330.31304   38   13 2460.00000 2246.26087  8.69%  12.3   50s
+ 67881 10454 infeasible   55      2460.00000 2274.65000  7.53%  12.8   55s
+ 87713 13527 2400.99737   48   19 2460.00000 2307.00000  6.22%  13.0   60s
+
+Cutting planes:
+  Learned: 2
+  Gomory: 5
+  Cover: 3
+  Implied bound: 18
+  Projected implied bound: 20
+  MIR: 25
+  Mixing: 6
+  Flow cover: 121
+  Zero half: 21
+  RLT: 28
+  Relax-and-lift: 35
+
+Explored 88354 nodes (1154774 simplex iterations) in 60.03 seconds (33.68 work units)
+Thread count was 8 (of 8 available processors)
+
+Solution count 10: 2460 2461 2526 ... 2634
+
+Time limit reached
+Best objective 2.460000000000e+03, best bound 2.309000000000e+03, gap 6.1382%

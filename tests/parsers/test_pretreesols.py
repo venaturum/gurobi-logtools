@@ -1,5 +1,6 @@
 from unittest import TestCase, main
 
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.continuous import ContinuousParser
 from gurobi_logtools.parsers.presolve import PresolveParser
 from gurobi_logtools.parsers.pretree_solutions import PreTreeSolutionParser
@@ -74,7 +75,7 @@ class TestPresolve(TestCase):
     def test_get_summary_presolve(self):
         for example_log, Parser in zip(example_logs, parsers):
             with self.subTest(example_log=example_log):
-                pretree_sols_parser = PreTreeSolutionParser()
+                pretree_sols_parser = PreTreeSolutionParser(ContinuationParser())
                 presolve_parser = Parser(pretree_sols_parser)
                 lines = example_log.strip().split("\n")
                 parse_lines(presolve_parser, lines)
@@ -83,7 +84,7 @@ class TestPresolve(TestCase):
     def test_get_progress_presolve(self):
         for example_log, Parser in zip(example_logs, parsers):
             with self.subTest(example_log=example_log):
-                pretree_sols_parser = PreTreeSolutionParser()
+                pretree_sols_parser = PreTreeSolutionParser(ContinuationParser())
                 presolve_parser = Parser(pretree_sols_parser)
                 lines = example_log.strip().split("\n")
                 parse_lines(presolve_parser, lines)

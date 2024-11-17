@@ -1,5 +1,6 @@
 import pathlib
 
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.continuous import ContinuousParser
 from gurobi_logtools.parsers.header import HeaderParser
 from gurobi_logtools.parsers.nodelog import NodeLogParser
@@ -16,20 +17,24 @@ class SingleLogParser:
     It expects parse to be called once for each line in a log file.
     """
 
+    _ContinuationParser = ContinuationParser
     _NoRelParser = NoRelParser
     _NodeLogParser = NodeLogParser
     _TerminationParser = TerminationParser
     _PreTreeSolutionParser = PreTreeSolutionParser
 
     def __init__(self, write_to_dir=None):
-        self.pretree_solution_parser = self._PreTreeSolutionParser()
+        self.continuation_parser = self._ContinuationParser()
+        self.pretree_solution_parser = self._PreTreeSolutionParser(
+            self.continuation_parser
+        )
 
         # Parsers in sequence
         self.header_parser = HeaderParser()
         self.presolve_parser = PresolveParser(self.pretree_solution_parser)
-        self.norel_parser = self._NoRelParser()
+        self.norel_parser = self._NoRelParser(self.continuation_parser)
         self.continuous_parser = ContinuousParser(self.pretree_solution_parser)
-        self.nodelog_parser = self._NodeLogParser()
+        self.nodelog_parser = self._NodeLogParser(self.continuation_parser)
         self.termination_parser = self._TerminationParser()
 
         # State
@@ -38,6 +43,8 @@ class SingleLogParser:
         self.current_parser = self.header_parser
         self.future_parsers = [
             self.presolve_parser,
+            self.continuation_parser,
+            # self.pretree_solution_parser,  # included here for continued optimizations
             self.norel_parser,
             self.continuous_parser,
             self.nodelog_parser,
@@ -77,6 +84,7 @@ class SingleLogParser:
         summary.update(self.pretree_solution_parser.get_summary())
         summary.update(self.nodelog_parser.get_summary())
         summary.update(self.termination_parser.get_summary())
+        summary.update(self.continuation_parser.get_summary())
         summary["ModelType"] = model_type(
             discrete_vars=summary.get("PresolvedNumBinVars", 0)
             + summary.get("PresolvedNumIntVars", 0)

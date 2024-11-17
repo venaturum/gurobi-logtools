@@ -1,0 +1,117 @@
+Gurobi 12.0.0 (mac64[x86]) logging started Sun Nov 17 15:35:23 2024
+
+Set parameter LogFile to value "continuation3.log"
+Set parameter NodeLimit to value 0
+Set parameter Cuts to value 0
+Set parameter Heuristics to value 0
+Set parameter DegenMoves to value 0
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (mac64[x86] - Darwin 23.6.0 23H124)
+
+CPU model: Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Non-default parameters:
+NodeLimit  0
+DegenMoves  0
+Heuristics  0
+Cuts  0
+
+Optimize a model with 396 rows, 322 columns and 1815 nonzeros
+Model fingerprint: 0x18b19fdf
+Variable types: 20 continuous, 302 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 8e+06]
+  Objective range  [1e+00, 1e+06]
+  Bounds range     [1e+00, 8e+02]
+  RHS range        [1e+00, 8e+06]
+Presolve removed 6 rows and 6 columns
+Presolve time: 0.01s
+Presolved: 390 rows, 316 columns, 1803 nonzeros
+Variable types: 19 continuous, 297 integer (297 binary)
+
+Root relaxation: objective 8.000024e+08, 72 iterations, 0.00 seconds (0.00 work units)
+
+    Nodes    |    Current Node    |     Objective Bounds      |     Work
+ Expl Unexpl |  Obj  Depth IntInf | Incumbent    BestBd   Gap | It/Node Time
+
+     0     0 8.0000e+08    0   72          - 8.0000e+08      -     -    0s
+
+Explored 1 nodes (72 simplex iterations) in 0.04 seconds (0.00 work units)
+Thread count was 8 (of 8 available processors)
+
+Solution count 0
+
+Node limit reached
+Best objective -, best bound 8.000024000000e+08, gap -
+Reset all parameters
+
+Gurobi 12.0.0 (mac64[x86]) logging started Sun Nov 17 15:35:23 2024
+
+Set parameter LogFile to value "continuation3.log"
+Set parameter TimeLimit to value 20
+Set parameter NoRelHeurTime to value 10
+Gurobi Optimizer version 12.0.0 build v12.0.0rc1 (mac64[x86] - Darwin 23.6.0 23H124)
+
+CPU model: Intel(R) Core(TM) i5-1038NG7 CPU @ 2.00GHz
+Thread count: 4 physical cores, 8 logical processors, using up to 8 threads
+
+Non-default parameters:
+TimeLimit  20
+NoRelHeurTime  10
+
+Optimize a model with 396 rows, 322 columns and 1815 nonzeros
+Model fingerprint: 0x18b19fdf
+Variable types: 20 continuous, 302 integer (0 binary)
+Coefficient statistics:
+  Matrix range     [1e+00, 8e+06]
+  Objective range  [1e+00, 1e+06]
+  Bounds range     [1e+00, 8e+02]
+  RHS range        [1e+00, 8e+06]
+Presolved: 390 rows, 316 columns, 1803 nonzeros
+
+Continuing optimization...
+
+H    0     0                    3.133356e+09 8.0000e+08  74.5%     -    0s
+Starting NoRel heuristic
+H    0     0                    3.033354e+09 8.0000e+08  73.6%     -    0s
+H    0     0                    2.633356e+09 8.0000e+08  69.6%     -    0s
+H    0     0                    2.633356e+09 8.0000e+08  69.6%     -    0s
+H    0     0                    2.633355e+09 8.0000e+08  69.6%     -    0s
+H    0     0                    2.533354e+09 8.0000e+08  68.4%     -    0s
+H    0     0                    2.307162e+09 8.0000e+08  65.3%     -    0s
+H    0     0                    1.900015e+09 8.0000e+08  57.9%     -    0s
+H    0     0                    1.825015e+09 8.0000e+08  56.2%     -    0s
+H    0     0                    1.800015e+09 8.0000e+08  55.6%     -    0s
+H    0     0                    1.800014e+09 8.0000e+08  55.6%     -    0s
+H    0     0                    1.800014e+09 8.0000e+08  55.6%     -    0s
+H    0     0                    1.800014e+09 8.0000e+08  55.6%     -    0s
+H    0     0                    1.800012e+09 8.0000e+08  55.6%     -    0s
+H    0     0                    1.766680e+09 8.0000e+08  54.7%     -    0s
+H    0     0                    1.766680e+09 8.0000e+08  54.7%     -    1s
+H    0     0                    1.700014e+09 8.0000e+08  52.9%     -    1s
+H    0     0                    1.600013e+09 8.0000e+08  50.0%     -    1s
+H    0     0                    1.500013e+09 8.0000e+08  46.7%     -    1s
+H    0     0                    1.480013e+09 8.0000e+08  45.9%     -    3s
+H    0     0                    1.475013e+09 8.0000e+08  45.8%     -    3s
+H    0     0                    1.475013e+09 8.0000e+08  45.8%     -    4s
+H    0     0                    1.460014e+09 8.0000e+08  45.2%     -    5s
+Elapsed time for NoRel heuristic: 5s (best bound 8.00002e+08)
+H    0     0                    1.433346e+09 8.0000e+08  44.2%     -    6s
+H    0     0                    1.400014e+09 8.0000e+08  42.9%     -    8s
+H    0     0                    1.350013e+09 8.0000e+08  40.7%     -    8s
+H    0     0                    1.200013e+09 8.0000e+08  33.3%     -    8s
+Elapsed time for NoRel heuristic: 10s (best bound 8.00002e+08)
+NoRel heuristic complete
+     0     0 8.0000e+08    0   72 1.2000e+09 8.0000e+08  33.3%     -   10s
+     0     0 8.0000e+08    0   72 1.2000e+09 8.0000e+08  33.3%     -   10s
+     0     2 8.0000e+08    0   72 1.2000e+09 8.0000e+08  33.3%     -   10s
+     1     4 8.0000e+08    1   72 1.2000e+09 8.0000e+08  33.3%  34.0   10s
+* 1882   737              46    1.200013e+09 8.0000e+08  33.3%   2.6   10s
+
+Explored 4935 nodes (23304 simplex iterations) in 10.85 seconds (4.09 work units)
+Thread count was 8 (of 8 available processors)
+
+Solution count 10: 1.20001e+09 1.20001e+09 1.35001e+09 ... 1.50001e+09
+
+Optimal solution found (tolerance 1.00e-04)
+Best objective 1.200012599796e+09, best bound 1.200003552014e+09, gap 0.0008%

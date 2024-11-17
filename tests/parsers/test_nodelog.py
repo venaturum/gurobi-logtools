@@ -1,3 +1,4 @@
+from gurobi_logtools.parsers.continuation import ContinuationParser
 from gurobi_logtools.parsers.nodelog import NodeLogParser
 from gurobi_logtools.parsers.util import parse_block
 
@@ -52,7 +53,7 @@ Best objective 5.0000e+08, best bound 5.0000e+08, gap 0.0008%
 
 
 def test_nodelog_parser_statsonly():
-    parser = NodeLogParser()
+    parser = NodeLogParser(ContinuationParser())
     parse_block(parser, nodelog_section_test_data_statsonly)
     assert parser.get_summary() == {
         "Cuts: Gomory": 13,
@@ -78,7 +79,7 @@ def test_nodelog_parser_statsonly():
 
 
 def test_nodelog_parser_withcuts():
-    parser = NodeLogParser()
+    parser = NodeLogParser(ContinuationParser())
     parse_block(parser, nodelog_section_test_data_withcuts)
     assert parser.get_summary() == {
         "Cuts: Gomory": 13,
@@ -97,7 +98,7 @@ def test_nodelog_parser_withcuts():
 
 def test_nodelog_parser():
     """Pass all test lines in sequence and test timeline."""
-    parser = NodeLogParser()
+    parser = NodeLogParser(ContinuationParser())
     parse_block(parser, nodelog_section_test_data)
     assert parser.get_summary() == {
         "NodeCount": 188145,
