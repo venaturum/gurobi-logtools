@@ -2,8 +2,13 @@
 ## Unreleased
 ### Fixed
 ### Changed
-- If logfiles are not found when parsing then a FileNotFoundError is raised
 ### Removed
+
+## 3.2.0 - 2024-12-19
+### Fixed
+- Logs ending with memory or work limit reached, will now return a corresponding status
+### Changed
+- If logfiles are not found when parsing then a FileNotFoundError is raised
 
 ## 3.1.0 - 2024-07-25
 ### Changed

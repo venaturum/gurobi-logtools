@@ -18,6 +18,7 @@ class SingleLogParser:
     """
 
     _ContinuationParser = ContinuationParser
+    _HeaderParser = HeaderParser
     _NoRelParser = NoRelParser
     _NodeLogParser = NodeLogParser
     _TerminationParser = TerminationParser
@@ -30,7 +31,7 @@ class SingleLogParser:
         )
 
         # Parsers in sequence
-        self.header_parser = HeaderParser()
+        self.header_parser = self._HeaderParser()
         self.presolve_parser = PresolveParser(self.pretree_solution_parser)
         self.norel_parser = self._NoRelParser(self.continuation_parser)
         self.continuous_parser = ContinuousParser(self.pretree_solution_parser)
