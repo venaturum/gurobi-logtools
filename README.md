@@ -1,16 +1,4 @@
-<style >
-@media (prefers-color-scheme: dark) {
-    .logo-dark { display: inline; justify-content: center; margin-right: "0px";}
-    .logo-light { display: none; justify-content: center; margin-right: "0px";}
-}
-@media (prefers-color-scheme: light) {
-    .logo-dark { display: none; justify-content: center; margin-right: "0px";}
-    .logo-light { display: inline; justify-content: center; margin-right: "0px";}
-}
-</style>
-
-<img src="logo_lightmode.svg" class="logo-light">
-<img src="logo_darkmode.svg" class="logo-dark">
+<img src="logo_glt.svg" justify-content="center">
 
 <p align="center">
 	<a href="https://pypi.python.org/pypi/gurobi-logtools" alt="PyPI">
