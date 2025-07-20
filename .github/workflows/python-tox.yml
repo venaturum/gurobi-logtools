@@ -20,7 +20,5 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - name: Install tox
         run: uv tool install tox --with tox-uv --with tox-gh
-      - name: Setup test suite
-        run: tox run -vv --notest --skip-missing-interpreters false
       - name: Run test suite
-        run: tox run --skip-pkg-install
+        run: uv tool run --with tox-uv tox
