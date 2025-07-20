@@ -1,4 +1,4 @@
-name: Test Gurobi Logtools
+name: Gurobi Logtools CI
 
 on:
   - push
@@ -60,7 +60,7 @@ jobs:
       - name: Install the project
         run: uv sync --locked
       - name: Test notebook
-        run: uv tool run pytest --nbmake --nbmake-kernel=python3 gurobi-logtools.ipynb
+        run: uv run pytest --nbmake --nbmake-kernel=python3 gurobi-logtools.ipynb
 
   mypy:
     name: Run MyPy
