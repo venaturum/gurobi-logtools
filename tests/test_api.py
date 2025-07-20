@@ -261,6 +261,7 @@ def test_rewrite_filenames():
             write_to_dir=Path(tempdirname) / "logs",
         )
         split_log_files = sorted(Path(tempdirname).joinpath("logs").glob("*.log"))
+        print(split_log_files)
         expected_names = [
             "912-MIPFocus1-Presolve1-TimeLimit600-glass4-0",
             "912-MIPFocus1-Presolve1-TimeLimit600-glass4-1",
