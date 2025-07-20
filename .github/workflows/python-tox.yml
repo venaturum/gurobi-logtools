@@ -6,7 +6,7 @@ on:
 
 jobs:
   test:
-    name: test with ${{ matrix.python-version }} on ${{ matrix.os }}
+    name: test with python ${{ matrix.python-version }} on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -31,8 +31,32 @@ jobs:
       - name: Run test suite
         run: uv tool run --with tox-uv tox -e py
       - name: Run pre-commit
-        if: matrix.env == '3.9'
+        if: matrix.python-version == '3.9'
         run: uv tool run --with tox-uv tox -e pre-commit
       - name: Test notebook
-        if: matrix.env == '3.9'
+        if: matrix.python-version == '3.9'
+        run: uv tool run --with tox-uv tox -e testnb
+
+test:
+    name: Run precommit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install tox
+        run: uv tool install tox --with tox-uv
+      - name: Run pre-commit
+        run: uv tool run --with tox-uv tox -e pre-commit
+
+test:
+    name: Test notebook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+      - name: Install tox
+        run: uv tool install tox --with tox-uv
+      - name: Test notebook
         run: uv tool run --with tox-uv tox -e testnb
