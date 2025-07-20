@@ -37,7 +37,7 @@ jobs:
         if: matrix.python-version == '3.9'
         run: uv tool run --with tox-uv tox -e testnb
 
-  test:
+  pre-commit:
     name: Run precommit
     runs-on: ubuntu-latest
     steps:
@@ -49,7 +49,7 @@ jobs:
       - name: Run pre-commit
         run: uv tool run --with tox-uv tox -e pre-commit
 
-  test:
+  test-notebook:
     name: Test notebook
     runs-on: ubuntu-latest
     steps:
