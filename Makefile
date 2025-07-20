@@ -1,5 +1,9 @@
 .PHONY : mypy format lint test testnb tox build docs
 
+init:
+	uv sync --locked
+	uv run pre-commit install
+
 mypy:
 	uv run mypy --install-types --check-untyped-defs --non-interactive src/gurobi_logtools
 
