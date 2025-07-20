@@ -14,10 +14,10 @@ lint:
 	uvx ruff check
 
 test:
-	uv run pytest ./tests
+	uv run --no-dev pytest ./tests
 
 testnb:
-	uv run pytest ./tests
+	uv run --no-dev pytest ./tests
 	uv run pytest --nbmake --nbmake-kernel=python3 gurobi-logtools.ipynb
 
 tox:
