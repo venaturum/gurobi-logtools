@@ -50,6 +50,16 @@ jobs:
       - name: Test notebook
         run: uv tool run --with tox-uv tox -e testnb
 
+  test-notebook2:
+    name: Test notebook2
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+      - name: Test notebook
+        run: uv tool run pytest --nbmake --nbmake-kernel=python3 gurobi-logtools.ipynb
+
   mypy:
     name: Run MyPy
     runs-on: ubuntu-latest
