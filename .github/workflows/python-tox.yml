@@ -20,5 +20,7 @@ jobs:
         uses: astral-sh/setup-uv@v6
       - name: Install tox
         run: uv tool install tox --with tox-uv --with tox-gh
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
       - name: Run test suite
         run: uv tool run --with tox-uv tox
