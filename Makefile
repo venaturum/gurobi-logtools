@@ -1,19 +1,23 @@
-.PHONY : mypy format ruff lint pytest build
+.PHONY : mypy format lint test testnb tox build docs
 
 mypy:
-	uv run mypy --python-executable=.venv/bin/python --install-types --check-untyped-defs --non-interactive src/gurobi_logtools
+	uv run mypy --install-types --check-untyped-defs --non-interactive src/gurobi_logtools
 
 format:
 	uvx ruff format
 
-ruff:
-	uvx ruff check
-
 lint:
-	format ruff
+	uvx ruff check
 
 test:
 	uv run pytest ./tests
+
+testnb:
+	uv run pytest ./tests
+	uv run pytest --nbmake --nbmake-kernel=python3 gurobi-logtools.ipynb
+
+tox:
+	uv run tox
 
 build:
 	uv build
