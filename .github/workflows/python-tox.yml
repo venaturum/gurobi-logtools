@@ -69,4 +69,4 @@ jobs:
       - name: Install MyPy
         run: pip install mypy
       - name: mypy
-        run: mypy --check-untyped-defs src/gurobi_logtools
+        run: mypy --install-types --non-interactive --check-untyped-defs src/gurobi_logtools
