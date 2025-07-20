@@ -14,6 +14,14 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
+        python-version:
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
     steps:
       - uses: actions/checkout@v4
       - name: Install the latest version of uv
@@ -21,4 +29,4 @@ jobs:
       - name: Install tox
         run: uv tool install tox --with tox-uv
       - name: Run test suite
-        run: uv tool run --with tox-uv tox
+        run: uv tool run --with tox-uv tox -e py
