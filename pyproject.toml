@@ -67,6 +67,7 @@ module=[
     "pandas.*",
     "plotly.*",
     "ipywidgets.*",
+    "IPython.*",
 ]
 ignore_missing_imports='true'
 

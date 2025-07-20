@@ -1,4 +1,4 @@
-name: Test Python Package
+name: Test Gurobi Logtools
 
 on:
   - push
@@ -30,24 +30,13 @@ jobs:
         run: uv tool install tox --with tox-uv
       - name: Run test suite
         run: uv tool run --with tox-uv tox -e py
-      - name: Run pre-commit
-        if: matrix.python-version == '3.9'
-        run: uv tool run --with tox-uv tox -e pre-commit
-      - name: Test notebook
-        if: matrix.python-version == '3.9'
-        run: uv tool run --with tox-uv tox -e testnb
 
   pre-commit:
-    name: Run precommit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Install the latest version of uv
-        uses: astral-sh/setup-uv@v6
-      - name: Install tox
-        run: uv tool install tox --with tox-uv
-      - name: Run pre-commit
-        run: uv tool run --with tox-uv tox -e pre-commit
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v3
+    - uses: pre-commit/action@v3.0.1
 
   test-notebook:
     name: Test notebook
